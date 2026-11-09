@@ -111,7 +111,18 @@ Terapkan grid, tipografi, material, dan koreografi dari panduan terpilih. Gunaka
   return { chosen, alternatives: pair.alternatives, pairing: summary, styleBiblePath, selectedStyleGuidePath, selectedSfxGuidePath };
 }
 
+const PRODUCT_CINEMA_BEATS = [
+  { visual: 'Siluet produk dari brand user. Cahaya tepi membuka satu bagian kontur.', motion: 'Geser cahaya secara halus. Tahan kamera sebelum kontur terlihat.', camera: 'HOLD', transition: 'MC', sound: 'transition-whoosh-soft jika cahaya benar-benar menyapu' },
+  { visual: 'Close-up satu detail bahan, bentuk, atau fungsi yang khas dari produk.', motion: 'Match cut dari kontur ke detail. Push-in pendek dengan easing lembut.', camera: 'PUSH', transition: 'MC', sound: 'glass-contact jika ada kontak material yang terlihat' },
+  { visual: 'Reveal produk utuh dari detail yang sama.', motion: 'Tarik kamera dan hentikan gerak saat siluet lengkap terbaca.', camera: 'PULL', transition: 'MC', sound: 'impact-soft saat hero mencapai posisi akhir' },
+  { visual: 'Produk utuh dan satu klaim atau fitur dari brief.', motion: 'Tahan framing. Munculkan teks sekali tanpa gerak berulang.', camera: 'HOLD', transition: 'MC', sound: 'Jeda' },
+  { visual: 'Lockup logo dan copy akhir brand user.', motion: 'Tahan logo dan teks sampai akhir.', camera: 'HOLD', transition: 'END', sound: 'Jeda' },
+];
+
 function adaptBeats(beats, pair) {
+  if (pair.style.id === 44 && pair.storyboard.id === 'T004') {
+    return beats.map((beat, index) => ({ ...beat, ...PRODUCT_CINEMA_BEATS[index] }));
+  }
   if (pair.storyboard.id !== 'T023') return beats;
   const visuals = {
     'gui-tutorial': [

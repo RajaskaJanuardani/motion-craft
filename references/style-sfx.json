@@ -41,5 +41,6 @@
   "40": [["impact-punch", 0.26, "Kontak olahraga utama"], ["transition-swipe", 0.23, "Grafik replay melintasi layar"], ["relay-switch", 0.22, "Skor berganti di papan"]],
   "41": [["water-bloom", 0.22, "Tetes mencapai kertas basah"], ["bristle-swipe", 0.18, "Kuas meninggalkan jalur pigmen"], ["k4", 0.16, "Lembar diseret keluar setelah hold"]],
   "42": [["chalk-stroke", 0.23, "Krayon mulai menggores tekstur"], ["k3", 0.20, "Potongan kertas diangkat"], ["impact-soft", 0.18, "Benda lunak berhenti di atas kertas"]],
-  "43": [["click-soft", 0.19, "Kontrol asli pada demo ditekan"], ["transition-chop", 0.23, "Match cut menghubungkan dua bentuk"], ["impact-soft", 0.22, "Produk mencapai posisi hero"]]
+  "43": [["click-soft", 0.19, "Kontrol asli pada demo ditekan"], ["transition-chop", 0.23, "Match cut menghubungkan dua bentuk"], ["impact-soft", 0.22, "Produk mencapai posisi hero"]],
+  "44": [["transition-whoosh-soft", 0.18, "Sapuan cahaya atau wipe benar-benar melintasi siluet"], ["glass-contact", 0.17, "Detail kaca atau logam menyentuh permukaan"], ["impact-soft", 0.22, "Hero mencapai posisi akhir setelah reveal"]]
 }

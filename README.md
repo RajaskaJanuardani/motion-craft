@@ -1,6 +1,6 @@
 # /motion-craft
 
-Skill untuk membuat motion graphics dan mengedit video dengan Remotion (React dan TypeScript). Mulai dari brief, pilih satu dari 43 panduan gaya dan satu dari 100 storyboard, lalu adaptasi isi shot. Template React mencakup UI, tipografi, kamera, grid, dan kartu. Gunakan aset sumber, cue audio sesuai aksi, dan pemeriksaan hasil render.
+Skill untuk membuat motion graphics dan mengedit video dengan Remotion (React dan TypeScript). Mulai dari brief, pilih satu dari 44 panduan gaya dan satu dari 100 storyboard, lalu adaptasi isi shot. Template React mencakup UI, tipografi, kamera, grid, dan kartu. Gunakan aset sumber, cue audio sesuai aksi, dan pemeriksaan hasil render.
 
 ## Status QA dan Timestamp
 
@@ -18,7 +18,7 @@ Inspector menghasilkan `FAIL`, `PARTIAL`, atau `PASS` sesuai pemeriksaan yang be
 4. [Kamera, Editing, dan Caption](#4-kamera-editing-dan-caption)
 5. [19 Komponen 3D Card Layout, Grid Animation, & Card Interaction](#5-19-komponen-3d-card-layout-grid-animation--card-interaction)
 6. [100 Template Storyboard Siap Pakai (`T001`–`T100`)](#6-100-template-storyboard-siap-pakai-t001t100)
-7. [43 File Spesifikasi Gaya Desain (`references/styles/`)](#7-43-file-spesifikasi-gaya-desain-referencesstyles)
+7. [44 File Spesifikasi Gaya Desain (`references/styles/`)](#7-44-file-spesifikasi-gaya-desain-referencesstyles)
 8. [64 Lagu Backsound & 65+ Studio SFX Terikat-Animasi](#8-64-lagu-backsound--65-studio-sfx-terikat-animasi)
 9. [Alur Kerja CLI & Skrip Otomatis](#9-alur-kerja-cli--skrip-otomatis)
 10. [Struktur Direktori & Benchmark Uji Skill](#10-struktur-direktori--benchmark-uji-skill)
@@ -142,9 +142,9 @@ Tersedia di [`references/storyboards/INDEX.md`](references/storyboards/INDEX.md)
 
 ---
 
-## 7. 43 File Spesifikasi Gaya Desain (`references/styles/`)
+## 7. 44 File Spesifikasi Gaya Desain (`references/styles/`)
 
-Lihat [43 gaya dan file panduan masing-masing](references/STYLES.md). Setiap panduan berisi komposisi 16:9 dan 9:16, arah palet dan material, cara memperlakukan UI sumber, contoh koreografi per frame, resep Remotion, serta uji tampilan yang khas.
+Lihat [44 gaya dan file panduan masing-masing](references/STYLES.md). Setiap panduan berisi komposisi 16:9 dan 9:16, arah palet dan material, cara memperlakukan UI sumber, contoh koreografi per frame, resep Remotion, serta uji tampilan yang khas.
 
 Contoh: [Swiss #12](references/styles/12-swiss-internasional.md) memakai grid, crop kontrol, dan hold baca. [Split Flap #10](references/styles/10-split-flap.md) mengatur engsel glyph dan kolom angka tetap. [Risograph #14](references/styles/14-risograph.md) memakai plat tinta, overprint, dan register slip. Pilih berdasarkan subjek yang perlu terlihat, lalu uji hasil pada ukuran layar tujuan.
 
@@ -211,8 +211,8 @@ motion-craft/
 │   ├── sfx/                              # 49 file rekaman studio SFX CC0 (.wav)
 │   └── songs/                            # 8 lagu BGM pre-bundled (.wav)
 ├── references/
-│   ├── STYLES.md                         # Indeks utama 43 gaya desain visual
-│   ├── styles/                           # 43 file spesifikasi rinci (01-cyberpunk.md .. 43-motion-reel-editorial.md)
+│   ├── STYLES.md                         # Indeks utama 44 gaya desain visual
+│   ├── styles/                           # 44 file spesifikasi rinci (01-cyberpunk.md .. 44-apple-inspired-product-cinema.md)
 │   ├── storyboards/                      # INDEX.md + 10 file kategori (100 template T001-T100)
 │   ├── CARD-GRID-3D-PATTERNS.md          # Dokumentasi 19 komponen 3D Card, Grid, & Card Interaction
 │   ├── SOUND.md                          # Katalog 64 lagu BGM & 65+ Studio SFX
@@ -245,7 +245,7 @@ motion-craft/
     │   └── ProceduralBackground.tsx      # Latar prosedural bersih sesuai gaya
     └── theme/
         ├── easing-and-timing.ts          # Fungsi splineAt, springAt, staggeredSpringAt, microBob
-        └── styles-catalog.ts             # Preset data ringkas ke-43 gaya desain
+        └── styles-catalog.ts             # Preset data ringkas ke-44 gaya desain
 ```
 
 ### Menjalankan Benchmark Uji Skill

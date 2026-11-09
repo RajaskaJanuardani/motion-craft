@@ -17,6 +17,7 @@ const CLI_INSTALL = {
 
 // More specific content wins over generic format words such as tutorial, short, or video.
 const PROFILES = [
+  ['T004', [44], ['intro apple', 'apple keynote', 'cinematic product reveal', 'reveal produk sinematik']],
   ['T039', [1, 28, 26], ['cybersecurity', 'keamanan siber', 'phishing', 'security incident', 'threat detection']],
   ['T034', [7, 18, 26, 27], ['arsitektur api', 'cara kerja api', 'api architecture', 'api flow']],
   ['T030', [7, 18, 27, 38], ['diagram alur', 'arsitektur sistem', 'flowchart', 'uml', 'system architecture']],
@@ -116,15 +117,16 @@ function storyboardFromText(catalog, text, requestedStyle) {
 export function selectMotion(brief, { styleId, templateId, aspect } = {}) {
   const catalog = loadStoryboards();
   const normalized = normalize(brief);
-  const namedStyle = [...STYLE_INDEX]
-    .sort((a, b) => b.name.length - a.name.length)
-    .find((style) => some(normalized, [
-      `gaya ${style.name}`, `style ${style.name}`, `gaya ${style.slug}`, `style ${style.slug}`,
-    ]));
+  const namedStyleMatch = STYLE_INDEX.flatMap((style) =>
+    [style.name, style.slug, ...style.aliases].flatMap((label) =>
+      ['gaya', 'style', 'ala'].map((prefix) => ({ style, phrase: normalize(`${prefix} ${label}`) })),
+    ),
+  ).sort((a, b) => b.phrase.length - a.phrase.length).find(({ phrase }) => has(normalized, phrase));
+  const namedStyle = namedStyleMatch?.style;
   const taggedStyle = brief.match(/\b(?:gaya|style)\s*(?:nomor\s*)?#?\s*(\d+)\b/i);
   const requestedId = styleId ?? (taggedStyle ? Number(taggedStyle[1]) : namedStyle?.id);
   const requestedStyle = STYLE_INDEX.find(({ id }) => id === requestedId);
-  if (requestedId != null && !requestedStyle) throw new Error(`Unknown style #${requestedId}. Choose 1–43.`);
+  if (requestedId != null && !requestedStyle) throw new Error(`Unknown style #${requestedId}. Choose 1–${STYLE_INDEX.at(-1).id}.`);
 
   const taggedTemplate = brief.match(/\b(?:template|storyboard)\s*#?\s*(T\d{3})\b/i);
   const requestedTemplateId = (templateId ?? taggedTemplate?.[1])?.toUpperCase();
@@ -133,13 +135,8 @@ export function selectMotion(brief, { styleId, templateId, aspect } = {}) {
 
   // A visual style name is separate from the subject or interaction shown in the video.
   let content = normalized.replace(/\b(?:tanpa|bukan|hindari|without|no)\s+(?:(?:pakai|lewat|menggunakan|via|demo)\s+)?(?:terminal|cli|command line|shell|bash|zsh|gui|installer grafis|coding|ai)\b/g, ' ');
-  if (namedStyle) {
-    for (const label of [namedStyle.name, namedStyle.slug]) {
-      for (const prefix of ['gaya', 'style']) {
-        const phrase = normalize(`${prefix} ${label}`);
-        content = ` ${content} `.replace(` ${phrase} `, ' ').trim();
-      }
-    }
+  if (namedStyleMatch) {
+    content = ` ${content} `.replace(` ${namedStyleMatch.phrase} `, ' ').trim();
   }
   const intent = resolveIntent(content);
   const storyboard = requestedTemplate

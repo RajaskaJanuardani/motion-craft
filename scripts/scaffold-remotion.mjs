@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { STYLE_INDEX } from './style-index.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,7 +61,9 @@ function parseArgs(argv) {
 
 const opts = parseArgs(process.argv);
 if (!Number.isFinite(opts.duration) || opts.duration <= 0) throw new Error('Duration must be positive.');
-if (opts.styleId !== null && (!Number.isInteger(opts.styleId) || opts.styleId < 1 || opts.styleId > 43)) throw new Error('Style must be 1..43.');
+if (opts.styleId !== null && !STYLE_INDEX.some(({ id }) => id === opts.styleId)) {
+  throw new Error(`Style must be 1..${STYLE_INDEX.at(-1).id}.`);
+}
 const targetSrc = path.join(opts.targetDir, 'src', 'antislop');
 
 // Pass user text as argv, never through a shell.

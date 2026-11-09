@@ -21,7 +21,7 @@ Pilih **pasangan** gaya dan storyboard berdasarkan bentuk konten dan tindakan ya
 node "<skill>/scripts/plan-motion.mjs" --brief "<isi dan tujuan>" --duration 12 --fps 30 --aspect 16:9 --out research
 ```
 
-Gunakan `--style <1–43>` dan/atau `--template <T001–T100>` jika user menetapkan pilihan atau agen perlu mengoreksi kecocokan. Planner memakai petunjuk kata utuh dan rekomendasi kompatibilitas. Untuk brief “cara install Linux”, titik awalnya installer grafis (#12 + T023). Jika brief menyebut memasang paket lewat CLI, gunakan #26 + T036. Periksa hasil terhadap maksud user; kata kunci hanyalah bantuan.
+Gunakan `--style <1–44>` dan/atau `--template <T001–T100>` jika user menetapkan pilihan atau agen perlu mengoreksi kecocokan. Planner memakai petunjuk kata utuh dan rekomendasi kompatibilitas. Untuk brief “cara install Linux”, titik awalnya installer grafis (#12 + T023). Jika brief menyebut memasang paket lewat CLI, gunakan #26 + T036. Untuk “cinematic intro Apple”, gunakan #44 + T004 jika brief belum memiliki urutan shot dari referensi. Gunakan identitas brand user. Periksa hasil terhadap maksud user.
 
 Baca satu `research/selected-style-guide.md` dan satu `research/storyboard.md`. Buka indeks [STYLES.md](references/STYLES.md) dan [storyboards/INDEX.md](references/storyboards/INDEX.md) saat butuh alternatif. Sesuaikan visual, aset, kamera, suara, dan durasi per adegan di `motion-plan.md` dan `scenes-plan.json`. Hapus cue atau komponen yang tidak berperan. Bila user memilih gaya yang berbeda dari rekomendasi, terapkan gaya pada panggung dan edit, sambil mempertahankan tindakan serta UI sumber.
 

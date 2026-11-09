@@ -51,6 +51,16 @@ try {
   assert.deepEqual(summary('Tutorial installer grafis Ubuntu, gaya Terminal CLI.'), [26, 'T023', '16:9']);
   assert.deepEqual(summary('Demo Linux Reels.', { styleId: 5, templateId: 'T097', aspect: '1:1' }), [5, 'T097', '1:1']);
 
+  assert.deepEqual(summary('Buat cinematic intro Apple untuk brand kopi gue.'), [44, 'T004', '16:9']);
+  assert.equal(selectMotion('Gaya Apple untuk video kopi').style.id, 44);
+  assert.equal(selectMotion('Buat promo apple pie.').style.id === 44, false);
+  const reveal = choosePair(parseMotionArgs(['--style', '44', '--template', 'T004']));
+  const revealPlan = makeScenePlan({ fps: 30, overlap: 10 }, reveal);
+  assert.match(revealPlan.scenes[1].visualHeroCenter, /Close-up/);
+  assert.equal(revealPlan.scenes[2].camera, 'PULL');
+  assert.ok(revealPlan.scenes.every(({ exitOverlapFrames }) => exitOverlapFrames === 0));
+  assert.match(revealPlan.scenes.at(-1).visualHeroCenter, /logo.*brand user/);
+
   const manual = ['--brief', 'Tutorial installer grafis Ubuntu', '--style', '14', '--storyboard', 'T023', '--out', temp];
   const draw = JSON.parse(run('draw-style.mjs', manual));
   run('scenes.mjs', manual);
@@ -66,7 +76,7 @@ try {
 
   const storyboards = loadStoryboards();
   assert.equal(new Set(storyboards.map(({ id }) => id)).size, 100);
-  assert.equal(new Set(STYLE_INDEX.map(({ id }) => id)).size, 43);
+  assert.equal(new Set(STYLE_INDEX.map(({ id }) => id)).size, STYLE_INDEX.length);
   assert.deepEqual(
     new Set(STYLE_INDEX.flatMap(({ storyboards: picks }) => picks)),
     new Set(storyboards.map(({ id }) => id)),
@@ -105,7 +115,7 @@ try {
     }
   }
 
-  console.log('Verified 43 style guides and SFX palettes, all 100 storyboard timings, CLI and GUI intent, explicit selections, and aligned output.');
+  console.log(`Verified ${STYLE_INDEX.length} style guides and SFX palettes, all 100 storyboard timings, CLI and GUI intent, explicit selections, and aligned output.`);
 } finally {
   fs.rmSync(temp, { recursive: true, force: true });
 }

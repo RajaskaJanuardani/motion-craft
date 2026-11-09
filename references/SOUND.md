@@ -6,7 +6,7 @@ Katalog suara untuk agent: **40 Lagu Backsound Prosedural Multi-Chord (`B00`–`
 
 ## Palet SFX per gaya
 
-Planner menulis `research/selected-sfx-guide.md` dengan tiga pilihan cue untuk masing-masing dari 43 gaya. [Pemetaan lengkap](style-sfx.json) menyimpan ID file, gain awal, dan kejadian pemicu. Gunakan sebagai titik awal. Pada Risograph, misalnya, pakai `ink-stamp` saat plat kedua mencapai register. Pada Split Flap, gunakan `flap-train` saat rangkaian huruf mulai berputar. Kalau frame hanya ditahan untuk dibaca, biarkan suara fokus pada narasi atau room tone.
+Planner menulis `research/selected-sfx-guide.md` dengan tiga pilihan cue untuk masing-masing dari 44 gaya. [Pemetaan lengkap](style-sfx.json) menyimpan ID file, gain awal, dan kejadian pemicu. Gunakan sebagai titik awal. Pada Risograph, misalnya, pakai `ink-stamp` saat plat kedua mencapai register. Pada Split Flap, gunakan `flap-train` saat rangkaian huruf mulai berputar. Kalau frame hanya ditahan untuk dibaca, biarkan suara fokus pada narasi atau room tone.
 
 Scaffold atau `synth-audio.mjs` menyiapkan WAV di `public/audio/sfx/`. Selain aset lama, ada 12 aproksimasi Foley sintetis untuk kertas, tinta, engsel, kapur, kuas, kaset, kaca, karet, katup udara, air, dan relay.
 
@@ -88,7 +88,7 @@ Dihasilkan secara deterministik dengan **progresi 4-akor harmonis**, bassline, R
 
 | Kode | Nama Lagu | BPM | Karakter & Instrumen | Cocok untuk Gaya / Konten |
 |---|---|---|---|---|
-| **B25** | **Apple Keynote Minimal Pluck** | 116 | Felt marimba hangat, sub-bass lembut, rim click presisi | Product launch, showcase fitur, Motion Reel Editorial (43), Swiss (12) |
+| **B25** | **Apple Keynote Minimal Pluck** | 116 | Felt marimba hangat, sub-bass lembut, rim click presisi | Product launch, showcase fitur, Apple-Inspired Product Cinema (44), Motion Reel Editorial (43), Swiss (12) |
 | **B26** | **Framer / Linear SaaS Groove** | 122 | Deep warm house bass, akor Rhodes 7th, shaker rapi | Demo aplikasi web/SaaS, UI interaktif, Neo-Brutalism (11), Isometric (7) |
 | **B27** | **Vox Documentary Piano & Pulse** | 104 | Arpeggio piano felt, pizzicato, detak jam halus | Explainer edukasi, Data Editorial (36), Koran (25), Peta Transit (38) |
 | **B28** | **Phonk / Drift High Energy** | 135 | Melodi cowbell tegas, 808 sub punchy, snare tajam | Hype reel, otomotif, olahraga ekstrem, Grafiti (4), Manga (35) |

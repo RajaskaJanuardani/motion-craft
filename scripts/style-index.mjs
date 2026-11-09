@@ -43,6 +43,7 @@ export const STYLE_INDEX = [
   [41, "cat-air", "Cat Air", "B10", "S-ORGANIK + S-UMUM", 68, ["puisi", "wellness", "meditasi", "lembut", "organik", "cat air"], "T083 T044 T086 T051 T053 T062 T090 T073"],
   [42, "krayon-pastel", "Krayon dan Pastel Minyak", "B08", "S-KERTAS + S-ORGANIK", 114, ["anak", "paud", "keluarga", "krayon", "menggambar"], "T021 T025 T052 T063 T066 T090 T049"],
   [43, "motion-reel-editorial", "Motion Reel Editorial", "B09", "S-DIGITAL + S-MEKANIK", 122, ["promo", "reel", "portofolio", "pitch", "agency", "jasa", "produk digital", "landing", "produk fisik", "showreel", "reel editorial"], "T001 T004 T005 T006 T011 T012 T015 T018 T019 T023 T027 T028 T031 T032 T033 T037 T038 T041 T043 T044 T047 T056 T058 T072 T076 T078 T080 T082 T087 T100"],
-].map(([id, slug, name, bgm, sfx, bpm, keywords, storyboards]) => ({
-  id, slug, name, bgm, sfx, bpm, keywords, storyboards: storyboards.split(' '),
+  [44, "apple-inspired-product-cinema", "Apple-Inspired Product Cinema", "B25", "S-SINEMA + S-MEKANIK", 116, ["intro apple", "apple keynote", "cinematic product reveal", "reveal produk sinematik"], "T004 T001", ["apple", "apple keynote"]],
+].map(([id, slug, name, bgm, sfx, bpm, keywords, storyboards, aliases = []]) => ({
+  id, slug, name, bgm, sfx, bpm, keywords, aliases, storyboards: storyboards.split(' '),
 }));
