@@ -150,7 +150,7 @@ const RAW_STYLES: RawStyleTuple[] = [
   [41,"cat-air","Cat Air",["#FBF7F0","#F3ECE0","#2F3E46","#6A8CAF","#E7A5A5","#A8C69F"],["Cormorant","Patrick Hand","DM Mono",600,0],["paper-grain",18,1.5,0,0,0,0],[68,"editorialSettle","iris-mask","dolly-lateral-parallax"],["B10","S-ORGANIK","S-UMUM"]],
   [42,"krayon-pastel","Krayon dan Pastel Minyak",["#FFF9EC","#FFFFFF","#1D3557","#457B9D","#E63946","#FFD166"],["Gochi Hand","Patrick Hand","DM Mono",400,0],["paper-grain",16,4,1,4,0,10],[114,"playfulPop","paper-tear","calm-steady"],["B08","S-KERTAS","S-ORGANIK"]],
   [43,"motion-reel-editorial","Motion Reel Editorial",["#F4EEE7","#FFFFFF","#0F110F","#686662","#FD5837","#C9DE4B"],["Instrument Serif","Hanken Grotesk","JetBrains Mono",400,0],["none",12,1.5,0,0,0,0],[122,"editorialSettle","none","push-in-settle"],["B09","S-DIGITAL","S-MEKANIK"]],
-  [44,"apple-inspired-product-cinema","Apple-Inspired Product Cinema",["#0D0E10","#1B1D21","#F5F5F7","#A5A7AE","#8DB8FF","#E8C9AB"],["Inter","Inter","monospace",650,0],["none",0,1,0,0,0,0],[116,"criticalLock","none","calm-steady"],["B25","S-SINEMA","S-MEKANIK"]],
+  [44,"apple-inspired-product-cinema","Apple-Inspired Interactive Motion",["#0D0E10","#1B1D21","#F5F5F7","#A5A7AE","#8DB8FF","#E8C9AB"],["Inter","Inter","monospace",650,0],["none",0,1,0,0,0,0],[116,"criticalLock","none","calm-steady"],["B25","S-SINEMA","S-MEKANIK"]],
 ];
 
 export const STYLES_CATALOG: Record<number, MotionStylePreset> = Object.fromEntries(

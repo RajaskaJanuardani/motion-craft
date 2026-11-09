@@ -1,5 +1,5 @@
 import { STYLE_INDEX } from './style-index.mjs';
-import { ASPECTS, loadStoryboards } from './storyboard-library.mjs';
+import { APPLE_INTERACTIVE_COMPONENTS, ASPECTS, loadStoryboards } from './storyboard-library.mjs';
 
 const normalize = (text) => text.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 const has = (text, phrase) => ` ${text} `.includes(` ${normalize(phrase)} `);
@@ -17,7 +17,7 @@ const CLI_INSTALL = {
 
 // More specific content wins over generic format words such as tutorial, short, or video.
 const PROFILES = [
-  ['T004', [44], ['intro apple', 'apple keynote', 'cinematic product reveal', 'reveal produk sinematik']],
+  ['T004', [44], ['cinematic product reveal', 'reveal produk sinematik']],
   ['T039', [1, 28, 26], ['cybersecurity', 'keamanan siber', 'phishing', 'security incident', 'threat detection']],
   ['T034', [7, 18, 26, 27], ['arsitektur api', 'cara kerja api', 'api architecture', 'api flow']],
   ['T030', [7, 18, 27, 38], ['diagram alur', 'arsitektur sistem', 'flowchart', 'uml', 'system architecture']],
@@ -131,14 +131,25 @@ export function selectMotion(brief, { styleId, templateId, aspect } = {}) {
   const taggedTemplate = brief.match(/\b(?:template|storyboard)\s*#?\s*(T\d{3})\b/i);
   const requestedTemplateId = (templateId ?? taggedTemplate?.[1])?.toUpperCase();
   const requestedTemplate = catalog.find(({ id }) => id === requestedTemplateId);
-  if (requestedTemplateId && !requestedTemplate) throw new Error(`Unknown storyboard ${requestedTemplateId}. Choose T001–T100.`);
+  if (requestedTemplateId && !requestedTemplate) throw new Error(`Unknown storyboard ${requestedTemplateId}. Choose T001–${catalog.at(-1).id}.`);
 
   // A visual style name is separate from the subject or interaction shown in the video.
   let content = normalized.replace(/\b(?:tanpa|bukan|hindari|without|no)\s+(?:(?:pakai|lewat|menggunakan|via|demo)\s+)?(?:terminal|cli|command line|shell|bash|zsh|gui|installer grafis|coding|ai)\b/g, ' ');
   if (namedStyleMatch) {
     content = ` ${content} `.replace(` ${namedStyleMatch.phrase} `, ' ').trim();
   }
-  const intent = resolveIntent(content);
+  const appleDirection = requestedStyle?.id === 44 || (
+    !requestedStyle && (Object.hasOwn(APPLE_INTERACTIVE_COMPONENTS, requestedTemplateId) ||
+      some(content, ['intro apple', 'apple keynote', 'apple creator studio', 'apple interactive motion']))
+  );
+  const appleStoryboard = some(content, ['tutorial', 'cara', 'how to', 'step by step']) ? 'T101'
+    : some(content, ['education', 'edukasi', 'explainer', 'jelaskan', 'belajar']) ? 'T103' : 'T102';
+  const intent = appleDirection ? {
+    id: 'apple-interactive',
+    storyboard: appleStoryboard,
+    styles: [44],
+    note: 'Petakan satu aksi nyata ke respons yang bisa dilihat. Pakai isi, aset, dan identitas brand user.',
+  } : resolveIntent(content);
   const storyboard = requestedTemplate
     ?? (intent && catalog.find(({ id }) => id === intent.storyboard))
     ?? storyboardFromText(catalog, content, requestedStyle);

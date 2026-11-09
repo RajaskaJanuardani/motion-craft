@@ -88,7 +88,7 @@ Dihasilkan secara deterministik dengan **progresi 4-akor harmonis**, bassline, R
 
 | Kode | Nama Lagu | BPM | Karakter & Instrumen | Cocok untuk Gaya / Konten |
 |---|---|---|---|---|
-| **B25** | **Apple Keynote Minimal Pluck** | 116 | Felt marimba hangat, sub-bass lembut, rim click presisi | Product launch, showcase fitur, Apple-Inspired Product Cinema (44), Motion Reel Editorial (43), Swiss (12) |
+| **B25** | **Apple Keynote Minimal Pluck** | 116 | Felt marimba hangat, sub-bass lembut, rim click presisi | Product launch, showcase fitur, Apple-Inspired Interactive Motion (44), Motion Reel Editorial (43), Swiss (12) |
 | **B26** | **Framer / Linear SaaS Groove** | 122 | Deep warm house bass, akor Rhodes 7th, shaker rapi | Demo aplikasi web/SaaS, UI interaktif, Neo-Brutalism (11), Isometric (7) |
 | **B27** | **Vox Documentary Piano & Pulse** | 104 | Arpeggio piano felt, pizzicato, detak jam halus | Explainer edukasi, Data Editorial (36), Koran (25), Peta Transit (38) |
 | **B28** | **Phonk / Drift High Energy** | 135 | Melodi cowbell tegas, 808 sub punchy, snare tajam | Hype reel, otomotif, olahraga ekstrem, Grafiti (4), Manga (35) |

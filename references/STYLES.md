@@ -53,7 +53,7 @@ Setelah memilih pasangan dengan `scripts/plan-motion.mjs`, baca panduan yang dis
 | **41** | [**Cat Air**](styles/41-cat-air.md) | `cat-air` | puisi, wellness, perjalanan, alam | `#FBF7F0` / `#E7A5A5` | `Cormorant` | **B10** / **B34** |
 | **42** | [**Krayon dan Pastel Minyak**](styles/42-krayon-pastel.md) | `krayon-pastel` | anak, edukasi dini, cerita sederhana, kampanye keluarga | `#FFF9EC` / `#E63946` | `Gochi Hand` | **B08** / **B36** |
 | **43** | [**Motion Reel Editorial**](styles/43-motion-reel-editorial.md) | `motion-reel-editorial` | promo jasa, portofolio, reel desainer, pitch produk digital | `#F4EEE7` / `#FD5837` | `Instrument Serif` | **B09** / **B25** |
-| **44** | [**Apple-Inspired Product Cinema**](styles/44-apple-inspired-product-cinema.md) | `apple-inspired-product-cinema` | cinematic intro, teaser, reveal produk | `#0D0E10` / `#8DB8FF` | `Inter` | **B25** / **B10** |
+| **44** | [**Apple-Inspired Interactive Motion**](styles/44-apple-inspired-product-cinema.md) | `apple-inspired-product-cinema` | tutorial, intro brand, edukasi, demo interaktif | `#0D0E10` / `#8DB8FF` | `Inter` | **B25** / **B10** |
 
 ---
 

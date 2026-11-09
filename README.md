@@ -1,6 +1,6 @@
 # /motion-craft
 
-Skill untuk membuat motion graphics dan mengedit video dengan Remotion (React dan TypeScript). Mulai dari brief, pilih satu dari 44 panduan gaya dan satu dari 100 storyboard, lalu adaptasi isi shot. Template React mencakup UI, tipografi, kamera, grid, dan kartu. Gunakan aset sumber, cue audio sesuai aksi, dan pemeriksaan hasil render.
+Skill untuk membuat motion graphics dan mengedit video dengan Remotion (React dan TypeScript). Mulai dari brief, pilih satu dari 44 panduan gaya dan satu dari 103 storyboard, lalu adaptasi isi shot. Template React mencakup UI, tipografi, kamera, grid, dan kartu. Gunakan aset sumber, cue audio sesuai aksi, dan pemeriksaan hasil render.
 
 ## Status QA dan Timestamp
 
@@ -17,7 +17,7 @@ Inspector menghasilkan `FAIL`, `PARTIAL`, atau `PASS` sesuai pemeriksaan yang be
 3. [Arah Visual](#3-arah-visual)
 4. [Kamera, Editing, dan Caption](#4-kamera-editing-dan-caption)
 5. [19 Komponen 3D Card Layout, Grid Animation, & Card Interaction](#5-19-komponen-3d-card-layout-grid-animation--card-interaction)
-6. [100 Template Storyboard Siap Pakai (`T001`–`T100`)](#6-100-template-storyboard-siap-pakai-t001t100)
+6. [103 Template Storyboard Siap Pakai (`T001`–`T103`)](#6-103-template-storyboard-siap-pakai-t001t103)
 7. [44 File Spesifikasi Gaya Desain (`references/styles/`)](#7-44-file-spesifikasi-gaya-desain-referencesstyles)
 8. [64 Lagu Backsound & 65+ Studio SFX Terikat-Animasi](#8-64-lagu-backsound--65-studio-sfx-terikat-animasi)
 9. [Alur Kerja CLI & Skrip Otomatis](#9-alur-kerja-cli--skrip-otomatis)
@@ -123,9 +123,9 @@ Tersedia langsung di `templates/components/` (dokumentasi lengkap di [`reference
 
 ---
 
-## 6. 100 Template Storyboard Siap Pakai (`T001`–`T100`)
+## 6. 103 Template Storyboard Siap Pakai (`T001`–`T103`)
 
-Tersedia di [`references/storyboards/INDEX.md`](references/storyboards/INDEX.md) dan terbagi ke dalam **10 file kategori** (masing-masing sudah memetakan waktu asimetris, gerak kamera, transisi seamless, SFX, dan komponen 3D/Grid/Card yang direkomendasikan):
+Tersedia di [`references/storyboards/INDEX.md`](references/storyboards/INDEX.md) dan terbagi ke dalam **11 file kategori** (masing-masing sudah memetakan waktu asimetris, gerak kamera, transisi seamless, SFX, dan komponen 3D/Grid/Card yang direkomendasikan):
 
 | File Kategori | Rentang ID | Contoh Template di Dalamnya |
 |---|---|---|
@@ -139,6 +139,7 @@ Tersedia di [`references/storyboards/INDEX.md`](references/storyboards/INDEX.md)
 | [`08-kreatif-hiburan.md`](references/storyboards/08-kreatif-hiburan.md) | `T071`–`T080` | Intro/Outro YouTube, Lyric Video Kinetic, Trailer Film Pendek, Intro Gaming, Podcast Audiogram, Music Visualizer, Opening Credits |
 | [`09-kuliner-travel-lifestyle.md`](references/storyboards/09-kuliner-travel-lifestyle.md) | `T081`–`T090` | Resep Cepat, Promo Restoran, Destinasi Wisata, Hotel/Villa Promo, Rutinitas Fitness, Skincare, Fashion Lookbook, Tur Properti, Otomotif |
 | [`10-infografis-data.md`](references/storyboards/10-infografis-data.md) | `T091`–`T100` | Statistik Tahunan (Big Number), Perbandingan A vs B, Timeline Proses, Funnel Bisnis, Exploded View, Top 5 Ranking, Peta Data, Line Chart, Wrapped |
+| [`11-apple-interactive.md`](references/storyboards/11-apple-interactive.md) | `T101`–`T103` | Tutorial, intro brand, edukasi interaktif dengan template TSX |
 
 ---
 
@@ -213,7 +214,7 @@ motion-craft/
 ├── references/
 │   ├── STYLES.md                         # Indeks utama 44 gaya desain visual
 │   ├── styles/                           # 44 file spesifikasi rinci (01-cyberpunk.md .. 44-apple-inspired-product-cinema.md)
-│   ├── storyboards/                      # INDEX.md + 10 file kategori (100 template T001-T100)
+│   ├── storyboards/                      # INDEX.md + 11 file kategori (103 template T001-T103)
 │   ├── CARD-GRID-3D-PATTERNS.md          # Dokumentasi 19 komponen 3D Card, Grid, & Card Interaction
 │   ├── SOUND.md                          # Katalog 64 lagu BGM & 65+ Studio SFX
 │   ├── CAMERA-SCENES-NARRATOR.md         # Dokumentasi C1 Spline Camera & 5 profil narator
@@ -221,7 +222,7 @@ motion-craft/
 ├── scripts/
 │   ├── plan-motion.mjs                  # Pemilih pasangan dan generator rencana
 │   ├── draw-style.mjs                    # Pemilih gaya desain & penyalin style guide .md
-│   ├── scenes.mjs                        # Planner storyboard (T001-T100) & pacing asimetris
+│   ├── scenes.mjs                        # Planner storyboard (T001-T103) & pacing asimetris
 │   ├── fetch-brand-logo.mjs              # Resolver SVG logo brand resmi (lokal + svgl + SimpleIcons)
 │   ├── narrator-sync.mjs                 # Generator word-level subtitle timing (words.json)
 │   ├── synth-audio.mjs                   # Synthesizer 48kHz WAV (40 lagu B00-B39 + 65 SFX)

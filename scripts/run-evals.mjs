@@ -105,7 +105,7 @@ check('3. Eval #1: SaaS Launch (Asymmetric Pacing + Word Sync)', () => {
     throw new Error('draw-style.mjs did not copy selected-style-guide.md');
   }
   if (!fs.existsSync(path.join(dir1, 'research/storyboard.md')) || !plan.selectedStoryboardId) {
-    throw new Error('scenes.mjs did not generate research/storyboard.md from the 100 storyboard templates');
+    throw new Error('scenes.mjs did not generate research/storyboard.md from the 103 storyboard templates');
   }
   const sbDir = path.join(SKILL_ROOT, 'references/storyboards');
   const sbFiles = fs.readdirSync(sbDir).filter((f) => f.endsWith('.md') && f !== 'INDEX.md');
@@ -114,12 +114,12 @@ check('3. Eval #1: SaaS Launch (Asymmetric Pacing + Word Sync)', () => {
     const matches = fs.readFileSync(path.join(sbDir, sf), 'utf8').match(/^### T\d{3}\b/gm);
     totalStoryboards += matches ? matches.length : 0;
   }
-  if (totalStoryboards !== 100) {
-    throw new Error(`Expected 100 storyboard templates across 10 files, found ${totalStoryboards}`);
+  if (totalStoryboards !== 103) {
+    throw new Error(`Expected 103 storyboard templates across 11 files, found ${totalStoryboards}`);
   }
   if (!words.length || !words.every((w, i) => w.endMs > w.startMs && (i === 0 || w.startMs >= words[i - 1].endMs))) throw new Error('Invalid narration word timeline.');
   const durs = plan.scenes.map((s) => s.durationInFrames);
-  return `Verified ${styleDocsCount} style .md files + 100 storyboard templates (${plan.selectedStoryboardId} auto-selected) + Asymmetric durations [${durs.join('f, ')}f]`;
+  return `Verified ${styleDocsCount} style .md files + 103 storyboard templates (${plan.selectedStoryboardId} auto-selected) + Asymmetric durations [${durs.join('f, ')}f]`;
 });
 
 // Test 4: Eval Scenario 2 — Event-Driven Audio Synth (typing-loop.wav, progress-loop.wav, d1.wav, d2.wav, d3.wav, d9.wav)
@@ -185,7 +185,7 @@ check('6. Behavioral reliability regressions (real media, geometry, timing, shel
   return execFileSync(process.execPath, [path.join(__dirname, 'test-reliability.mjs')], { encoding: 'utf8' }).trim();
 });
 
-check('7. Brief pairing and storyboard timing (style catalog and 100 templates)', () => {
+check('7. Brief pairing and storyboard timing (style catalog and 103 templates)', () => {
   return execFileSync(process.execPath, [path.join(__dirname, 'test-planning.mjs')], { encoding: 'utf8' }).trim();
 });
 

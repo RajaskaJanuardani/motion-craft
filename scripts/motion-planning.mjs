@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { selectMotion } from './motion-pairing.mjs';
-import { SKILL_ROOT, buildSceneTimeline, readBeats } from './storyboard-library.mjs';
+import { APPLE_INTERACTIVE_COMPONENTS, SKILL_ROOT, buildSceneTimeline, readBeats } from './storyboard-library.mjs';
 
 const STYLE_SFX = JSON.parse(fs.readFileSync(path.join(SKILL_ROOT, 'references/style-sfx.json'), 'utf8'));
 
@@ -49,12 +49,14 @@ export function choosePair(options) {
   const styleGuide = `references/styles/${String(style.id).padStart(2, '0')}-${style.slug}.md`;
   const guide = fs.readFileSync(path.join(SKILL_ROOT, styleGuide), 'utf8');
   const chosen = { id: style.id, name: style.name, bgm: style.bgm, sfx: style.sfx, bpm: style.bpm, styleGuide };
+  const templateComponent = style.id === 44 ? APPLE_INTERACTIVE_COMPONENTS[pair.storyboard.id] : undefined;
   const summary = {
     styleId: style.id,
     styleName: style.name,
     styleGuide,
     soundPalette: STYLE_SFX[style.id].map(([sfx, volume, action]) => ({ sfx, volume, action })),
     storyboardId: pair.storyboard.id,
+    ...(templateComponent && { templateComponent }),
     storyboardTitle: pair.storyboard.title,
     storyboardFile: pair.storyboard.file,
     aspect: pair.aspect,
@@ -181,11 +183,14 @@ export function writeSceneOutputs(options, selection, plan) {
 - **Cue:** ${scene.sfx}
 `;
   }).join('\n');
+  const codeTemplate = summary.templateComponent
+    ? `\n- **Template kode:** \`${summary.templateComponent}\` di \`templates/components/AppleInteractive.tsx\`. Scaffold menyiapkan \`AppleInteractiveStarter.tsx\`.`
+    : '';
   const summaryMd = `- **Brief:** ${plan.brief}
 - **Pasangan:** #${summary.styleId} ${summary.styleName} + ${summary.storyboardId} ${summary.storyboardTitle}
 - **Sumber:** \`${summary.styleGuide}\` dan \`${summary.storyboardFile}\`
 - **Format:** ${plan.aspect} · ${plan.totalFrames} frame @ ${plan.fps} fps
-- **Arah adaptasi:** ${summary.adaptation}`;
+- **Arah adaptasi:** ${summary.adaptation}${codeTemplate}`;
 
   fs.mkdirSync(out, { recursive: true });
   fs.writeFileSync(planPath, JSON.stringify(plan, null, 2) + '\n');

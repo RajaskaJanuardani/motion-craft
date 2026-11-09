@@ -1,6 +1,6 @@
-# STORYBOARD INDEX — 100 Template Storyboard untuk Remotion
+# STORYBOARD INDEX — 103 Template Storyboard untuk Remotion
 
-Katalog 100 template storyboard di 10 kategori. Setiap template memberi struktur shot, waktu, visual, gerak, kamera, dan cue suara. Buka satu kategori atau satu storyboard yang dipilih planner.
+Katalog 103 template storyboard di 11 kategori. Setiap template memberi struktur shot, waktu, visual, gerak, kamera, dan cue suara. Buka satu kategori atau satu storyboard yang dipilih planner.
 
 ## Pilih dan adaptasi
 
@@ -225,3 +225,6 @@ node "<skill>/scripts/plan-motion.mjs" --template T032 --brief "Demo SaaS Dashbo
 | T098 | Tren Harga (Line Chart) | 15s | 16:9 |
 | T099 | Hasil Survei | 20s | 16:9 |
 | T100 | Year in Review (Wrapped) | 30s | 9:16 |
+| T101 | Tutorial Interaktif (#44) | 12s | 16:9 |
+| T102 | Intro Brand Interaktif (#44) | 10s | 16:9 |
+| T103 | Edukasi Sebab–Akibat Interaktif (#44) | 15s | 16:9 |

@@ -51,8 +51,21 @@ try {
   assert.deepEqual(summary('Tutorial installer grafis Ubuntu, gaya Terminal CLI.'), [26, 'T023', '16:9']);
   assert.deepEqual(summary('Demo Linux Reels.', { styleId: 5, templateId: 'T097', aspect: '1:1' }), [5, 'T097', '1:1']);
 
-  assert.deepEqual(summary('Buat cinematic intro Apple untuk brand kopi gue.'), [44, 'T004', '16:9']);
+  assert.deepEqual(summary('Buat cinematic intro Apple untuk brand kopi gue.'), [44, 'T102', '16:9']);
+  assert.deepEqual(summary('Gaya Apple untuk tutorial cara pakai dashboard.'), [44, 'T101', '16:9']);
+  assert.deepEqual(summary('Edukasi gaya Apple tentang gravitasi buat Reels.'), [44, 'T103', '9:16']);
+  assert.equal(selectMotion('Buat tutorial', { templateId: 'T101' }).style.id, 44);
   assert.equal(selectMotion('Gaya Apple untuk video kopi').style.id, 44);
+  const interactiveOut = path.join(temp, 'interactive');
+  const interactive = JSON.parse(run('plan-motion.mjs', ['--brief', 'Edukasi gaya Apple tentang gravitasi', '--out', interactiveOut]));
+  assert.equal(interactive.pairing.templateComponent, 'AppleInteractiveEducation');
+  assert.match(fs.readFileSync(interactive.motionPlanPath, 'utf8'), /AppleInteractiveStarter/);
+  run('scaffold-remotion.mjs', ['--target', interactiveOut, '--style', '44', '--template', 'T103', '--duration', '2', '--aspect', '9:16']);
+  const starter = fs.readFileSync(path.join(interactiveOut, 'src/antislop/AppleInteractiveStarter.tsx'), 'utf8');
+  const interactivePlan = JSON.parse(fs.readFileSync(path.join(interactiveOut, 'research/scenes-plan.json'), 'utf8'));
+  assert.match(starter, /<AppleInteractiveEducation/);
+  assert.equal(fs.existsSync(path.join(interactiveOut, 'public/words.json')), false);
+  assert.ok(starter.includes(`cuts={${JSON.stringify(interactivePlan.scenes.map(({ startFrame }) => startFrame))}}`));
   assert.equal(selectMotion('Buat promo apple pie.').style.id === 44, false);
   const reveal = choosePair(parseMotionArgs(['--style', '44', '--template', 'T004']));
   const revealPlan = makeScenePlan({ fps: 30, overlap: 10 }, reveal);
@@ -75,7 +88,7 @@ try {
   assert.equal(fs.existsSync(invalidOutput), false);
 
   const storyboards = loadStoryboards();
-  assert.equal(new Set(storyboards.map(({ id }) => id)).size, 100);
+  assert.equal(new Set(storyboards.map(({ id }) => id)).size, 103);
   assert.equal(new Set(STYLE_INDEX.map(({ id }) => id)).size, STYLE_INDEX.length);
   assert.deepEqual(
     new Set(STYLE_INDEX.flatMap(({ storyboards: picks }) => picks)),
@@ -115,7 +128,7 @@ try {
     }
   }
 
-  console.log(`Verified ${STYLE_INDEX.length} style guides and SFX palettes, all 100 storyboard timings, CLI and GUI intent, explicit selections, and aligned output.`);
+  console.log(`Verified ${STYLE_INDEX.length} style guides and SFX palettes, all 103 storyboard timings, CLI and GUI intent, explicit selections, and aligned output.`);
 } finally {
   fs.rmSync(temp, { recursive: true, force: true });
 }

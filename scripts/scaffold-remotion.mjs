@@ -36,7 +36,7 @@ function parseArgs(argv) {
     templateId: null,
     aspect: null,
     fps: 30,
-    text: 'Fokus utama adalah visual konten yang hidup. Kamera tenang mengikuti ketikan dan klik kursor, lalu berpindah scene secara halus.',
+    text: null,
     duration: 12,
   };
   for (let i = 2; i < argv.length; i++) {
@@ -79,10 +79,31 @@ const planArgs = [
 if (opts.styleId !== null) planArgs.push('--style', String(opts.styleId));
 if (opts.templateId !== null) planArgs.push('--template', opts.templateId);
 if (opts.aspect !== null) planArgs.push('--aspect', opts.aspect);
-const { chosen: chosenMeta, pairing } = JSON.parse(run('plan-motion.mjs', planArgs, true));
+const { chosen: chosenMeta, pairing, planPath } = JSON.parse(run('plan-motion.mjs', planArgs, true));
 
 console.log(`[scaffold-remotion] Copying ready-to-use templates to ${targetSrc}...`);
 copyDirRecursive(path.join(SKILL_ROOT, 'templates'), targetSrc);
-run('narrator-sync.mjs', ['--text', opts.text, '--duration', String(opts.duration), '--out-words', path.join(opts.targetDir, 'public/words.json'), '--out-map', path.join(opts.targetDir, 'research/word-map.md')]);
+if (pairing.templateComponent) {
+  const { aspect, fps, totalFrames, scenes } = JSON.parse(fs.readFileSync(planPath, 'utf8'));
+  const dimensions = { '16:9': [1920, 1080], '9:16': [1080, 1920], '1:1': [1080, 1080] };
+  const [width, height] = dimensions[aspect];
+  const config = { width, height, fps, durationInFrames: totalFrames };
+  const cuts = scenes.map(({ startFrame }) => startFrame);
+  fs.writeFileSync(path.join(targetSrc, 'AppleInteractiveStarter.tsx'), `import React from 'react';
+import { ${pairing.templateComponent}, type AppleInteractiveProps } from './components/AppleInteractive';
+
+export const appleInteractiveConfig = ${JSON.stringify(config, null, 2)};
+export const AppleInteractiveStarter: React.FC<AppleInteractiveProps> = (props) => (
+  <${pairing.templateComponent} cuts={${JSON.stringify(cuts)}} {...props} />
+);
+`);
+}
+const narration = opts.text ?? (pairing.templateComponent
+  ? null
+  : 'Fokus utama adalah visual konten yang hidup. Kamera tenang mengikuti ketikan dan klik kursor, lalu berpindah scene secara halus.');
+if (narration !== null) {
+  run('narrator-sync.mjs', ['--text', narration, '--duration', String(opts.duration), '--out-words', path.join(opts.targetDir, 'public/words.json'), '--out-map', path.join(opts.targetDir, 'research/word-map.md')]);
+}
 run('synth-audio.mjs', ['--bgm', chosenMeta.bgm, '--duration', String(opts.duration), '--fps', String(opts.fps), '--out', path.join(opts.targetDir, 'public/audio')]);
-console.log(`[scaffold-remotion] Ready: style #${chosenMeta.id} (${chosenMeta.name}) + ${pairing.storyboardId}; narration timings are estimates until aligned to audio.`);
+const narrationStatus = narration === null ? 'no narration requested' : 'narration timings are estimates until aligned to audio';
+console.log(`[scaffold-remotion] Ready: style #${chosenMeta.id} (${chosenMeta.name}) + ${pairing.storyboardId}; ${narrationStatus}.`);

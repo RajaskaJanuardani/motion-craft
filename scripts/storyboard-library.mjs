@@ -4,6 +4,11 @@ import { fileURLToPath } from 'node:url';
 
 export const SKILL_ROOT = fileURLToPath(new URL('../', import.meta.url));
 export const ASPECTS = ['16:9', '9:16', '1:1'];
+export const APPLE_INTERACTIVE_COMPONENTS = {
+  T101: 'AppleInteractiveTutorial',
+  T102: 'AppleInteractiveBrandIntro',
+  T103: 'AppleInteractiveEducation',
+};
 
 export function loadStoryboards() {
   const folder = path.join(SKILL_ROOT, 'references', 'storyboards');
