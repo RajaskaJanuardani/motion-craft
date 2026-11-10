@@ -172,14 +172,16 @@ Dokumentasi lengkap terdapat di [`references/SOUND.md`](references/SOUND.md):
 
 Seluruh skrip di folder `scripts/` berjalan dengan **Node.js murni (zero external npm dependencies)**:
 
+Lengkapi brief bersama user melalui [intake adaptif](references/BRIEF-INTAKE.md). Pertanyaan hanya untuk detail yang belum jelas, dengan saran agen atau jawaban sendiri. Simpan keputusan ke `resolved-brief.json`; seluruh entry point produksi memerlukannya dan menolak flag yang bertentangan.
+
 Perintah `plan-motion.mjs` memilih struktur adegan dan gaya dalam satu langkah. Output meliputi `style-bible.md`, `selected-style-guide.md`, `storyboard.md`, `scenes-plan.json`, dan `motion-plan.md`. Periksa asumsi di plan dan adaptasi adegan ke aset/aksi yang diminta. `draw-style.mjs` dan `scenes.mjs` tetap bisa dipakai terpisah dengan pemilih yang sama.
 
 ```bash
 # Pilih pasangan dari brief. Brief ini memakai asumsi installer grafis.
-node "<skill>/scripts/plan-motion.mjs" --brief "Buat video cara install Linux" --duration 30 --fps 30 --out research
+node "<skill>/scripts/plan-motion.mjs" --brief-file resolved-brief.json --out research
 
 # Atau kunci salah satu/kedua pilihan. Format bisa disetel terpisah.
-node "<skill>/scripts/plan-motion.mjs" --brief "Demo instalasi paket di terminal Linux" --style 26 --template T036 --aspect 16:9 --duration 15 --out research
+node "<skill>/scripts/plan-motion.mjs" --brief-file resolved-brief.json --template T036 --out research
 
 # 3. Ambil Logo SVG Resmi untuk Semua Brand/Project yang Disebut
 node "<skill>/scripts/fetch-brand-logo.mjs" --brands "claude,remotion,after-effects,react,typescript,github" --project-dir . --out public/brands

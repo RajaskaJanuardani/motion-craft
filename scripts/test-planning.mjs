@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { fixtureArgs } from './brief-test-fixture.mjs';
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -12,7 +13,7 @@ import { STYLE_INDEX } from './style-index.mjs';
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'motion-planning-'));
 const script = (name) => path.join(SKILL_ROOT, 'scripts', name);
-const run = (name, args) => execFileSync(process.execPath, [script(name), ...args], { encoding: 'utf8' });
+const run = (name, args) => execFileSync(process.execPath, [script(name), ...fixtureArgs(temp, args)], { encoding: 'utf8' });
 const summary = (brief, overrides) => {
   const pair = selectMotion(brief, overrides);
   return [pair.style.id, pair.storyboard.id, pair.aspect];
@@ -82,7 +83,7 @@ try {
   assert.equal(separate.selectedStoryboardId, draw.pairing.storyboardId);
 
   const invalidOutput = path.join(temp, 'invalid');
-  const invalid = spawnSync(process.execPath, [script('plan-motion.mjs'), '--duration', '0.01', '--out', invalidOutput], { encoding: 'utf8' });
+  const invalid = spawnSync(process.execPath, [script('plan-motion.mjs'), ...fixtureArgs(temp, ['--duration', '0.01', '--out', invalidOutput])], { encoding: 'utf8' });
   assert.notEqual(invalid.status, 0);
   assert.match(invalid.stderr, /needs at least/);
   assert.equal(fs.existsSync(invalidOutput), false);

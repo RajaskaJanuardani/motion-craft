@@ -4,6 +4,7 @@
  * Automated Benchmark & Verification Suite untuk /motion-craft (v2.2 Authentic UI & Event-SFX Edition)
  */
 
+import { fixtureArgs } from './brief-test-fixture.mjs';
 import fs from 'node:fs';
 import { MATERIAL_SFX } from './material-sfx.mjs';
 import { STYLE_INDEX } from './style-index.mjs';
@@ -35,6 +36,8 @@ function check(name, fn) {
 console.log(`\n================================================================`);
 console.log(`  BENCHMARK SUITE: ${evalsData.skill_name} (Art Direction, Pairing & Reliability)`);
 console.log(`================================================================\n`);
+
+check('Brief intake gates', () => execFileSync(process.execPath, [path.join(__dirname, 'test-brief.mjs')], { encoding: 'utf8' }));
 
 // Test 1: Static Linter pada seluruh Template
 check('1. Static Anti-Slop Linter (No Filler Icons, No Bullet Dots, Zero Emoji, Zero Shake)', () => {
@@ -90,7 +93,7 @@ check('2. Authentic UI, Official BrandLogo, Event-Synced SFX, & 19 Card/Grid/3D 
 check('3. Eval #1: SaaS Launch (Asymmetric Pacing + Word Sync)', () => {
   const dir1 = path.join(tmpRoot, 'eval1');
   execFileSync(process.execPath, [path.join(__dirname, 'plan-motion.mjs'),
-    '--brief', 'SaaS AI Assistant developer launch', '--duration', '12', '--out', path.join(dir1, 'research'),
+    ...fixtureArgs(tmpRoot, ['--brief', 'SaaS AI Assistant developer launch', '--duration', '12', '--out', path.join(dir1, 'research')]),
   ], { stdio: 'pipe' });
   execSync(
     `node "${path.join(__dirname, 'narrator-sync.mjs')}" --text "Fokus utama adalah visual konten di tengah dan subtitle rapi di bawah." --out-words "${dir1}/public/words.json" --out-map "${dir1}/research/word-map.md"`,

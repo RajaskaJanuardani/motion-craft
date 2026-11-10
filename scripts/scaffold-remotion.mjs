@@ -6,6 +6,7 @@
  */
 
 import fs from 'node:fs';
+import { requireResolvedBrief } from './brief-contract.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -44,6 +45,7 @@ function parseArgs(argv) {
     const value = argv[++i];
     if (value === undefined) throw new Error(`Missing value for ${key}.`);
     switch (key) {
+      case '--brief-file': args.briefFile = path.resolve(value); break;
       case '--target': args.targetDir = path.resolve(value); break;
       case '--brief': args.brief = value; break;
       case '--style': args.styleId = Number(value); break;
@@ -60,6 +62,7 @@ function parseArgs(argv) {
 }
 
 const opts = parseArgs(process.argv);
+requireResolvedBrief(opts, process.argv.slice(2));
 if (!Number.isFinite(opts.duration) || opts.duration <= 0) throw new Error('Duration must be positive.');
 if (opts.styleId !== null && !STYLE_INDEX.some(({ id }) => id === opts.styleId)) {
   throw new Error(`Style must be 1..${STYLE_INDEX.at(-1).id}.`);
@@ -73,6 +76,7 @@ function run(script, args, capture = false) {
   });
 }
 const planArgs = [
+  '--brief-file', opts.briefFile,
   '--brief', opts.brief, '--duration', String(opts.duration), '--fps', String(opts.fps),
   '--out', path.join(opts.targetDir, 'research'),
 ];
@@ -84,9 +88,7 @@ const { chosen: chosenMeta, pairing, planPath } = JSON.parse(run('plan-motion.mj
 console.log(`[scaffold-remotion] Copying ready-to-use templates to ${targetSrc}...`);
 copyDirRecursive(path.join(SKILL_ROOT, 'templates'), targetSrc);
 if (pairing.templateComponent) {
-  const { aspect, fps, totalFrames, scenes } = JSON.parse(fs.readFileSync(planPath, 'utf8'));
-  const dimensions = { '16:9': [1920, 1080], '9:16': [1080, 1920], '1:1': [1080, 1080] };
-  const [width, height] = dimensions[aspect];
+  const { width, height, fps, totalFrames, scenes } = JSON.parse(fs.readFileSync(planPath, 'utf8'));
   const config = { width, height, fps, durationInFrames: totalFrames };
   const cuts = scenes.map(({ startFrame }) => startFrame);
   fs.writeFileSync(path.join(targetSrc, 'AppleInteractiveStarter.tsx'), `import React from 'react';
@@ -98,9 +100,7 @@ export const AppleInteractiveStarter: React.FC<AppleInteractiveProps> = (props) 
 );
 `);
 }
-const narration = opts.text ?? (pairing.templateComponent
-  ? null
-  : 'Fokus utama adalah visual konten yang hidup. Kamera tenang mengikuti ketikan dan klik kursor, lalu berpindah scene secara halus.');
+const narration = opts.text ?? null;
 if (narration !== null) {
   run('narrator-sync.mjs', ['--text', narration, '--duration', String(opts.duration), '--out-words', path.join(opts.targetDir, 'public/words.json'), '--out-map', path.join(opts.targetDir, 'research/word-map.md')]);
 }

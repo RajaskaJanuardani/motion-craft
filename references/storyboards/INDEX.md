@@ -79,7 +79,7 @@ Selain UI autentik (`<AuthenticBrowserWindow />`, `<AuthenticTerminalWindow />`,
 
 Generate storyboard otomatis dari CLI:
 ```bash
-node "<skill>/scripts/plan-motion.mjs" --template T032 --brief "Demo SaaS Dashboard" --duration 20 --out research
+node "<skill>/scripts/plan-motion.mjs" --brief-file resolved-brief.json --template T032 --out research
 ```
 
 ---

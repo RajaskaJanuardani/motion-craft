@@ -21,6 +21,7 @@ export function parseMotionArgs(argv) {
     const value = argv[++index];
     if (value === undefined) throw new Error(`Missing value for ${flag}.`);
     switch (flag) {
+      case '--brief-file': options.briefFile = value; break;
       case '--brief': options.brief = value; break;
       case '--style': options.styleId = Number(value); break;
       case '--template':
@@ -154,6 +155,9 @@ export function makeScenePlan(options, selection) {
   return {
     brief: options.brief,
     totalFrames,
+    width: options.width,
+    height: options.height,
+    resolvedBrief: options.resolvedBrief,
     fps: options.fps,
     aspect: pair.aspect,
     asymmetricPacing: new Set(scenes.map(({ contentFrames }) => contentFrames)).size > 1,

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { fixtureArgs } from './brief-test-fixture.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -8,7 +9,7 @@ import { spawnSync, execFileSync } from 'node:child_process';
 import { inspectGeometry } from './qa-geometry.mjs';
 const scripts = path.dirname(fileURLToPath(import.meta.url));
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'motion-reliability-'));
-const run = (script, args = [], env) => spawnSync(process.execPath, [path.join(scripts, script), ...args], { cwd: tmp, encoding: 'utf8', env: env || process.env });
+const run = (script, args = [], env) => spawnSync(process.execPath, [path.join(scripts, script), ...(script === 'scaffold-remotion.mjs' ? fixtureArgs(tmp, args) : args)], { cwd: tmp, encoding: 'utf8', env: env || process.env });
 const json = (result) => JSON.parse(result.stdout);
 let passed = 0;
 function check(name, fn) { fn(); passed++; console.log(`PASS ${name}`); }

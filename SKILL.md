@@ -9,7 +9,9 @@ Bangun video deterministik di Remotion. Ubah ide menjadi keputusan visual dan sh
 
 ## 1. Tetapkan brief
 
-Catat tujuan, penonton, subjek atau tindakan yang perlu terlihat, aset dan referensi, serta durasi, rasio, dan fps. Isi pilihan yang belum ditentukan dengan asumsi yang bisa dibalik dan sebutkan singkat ke user. Jika pilihan mengubah fakta atau prosedur, pastikan konteksnya sebelum menggambar langkah spesifik.
+Baca [BRIEF-INTAKE.md](references/BRIEF-INTAKE.md) sebelum produksi. Wajib tanyakan keputusan brief yang belum jelas dan tunggu jawaban sebelum storyboard, scaffold, coding, atau render. Tanyakan topik dahulu jika belum ada. Untuk setiap pertanyaan, berikan **Saran agen (Rekomendasi)** yang konkret dan jalur **Tulis sendiri**. Gunakan menu host jika tersedia, atau chat dua opsi. Jangan menganggap full permission, timeout, atau input kosong sebagai jawaban.
+
+Ambil keputusan yang sudah jelas dari prompt dan percakapan agar tidak bertanya ulang. Catat delegasi eksplisit seperti “sisanya bebas”, isi pilihan yang didelegasikan, dan ringkas hasilnya. Brief lengkap dapat langsung lanjut. Simpan semua keputusan beserta bukti ke `resolved-brief.json` sesuai kontrak intake. Jangan mengganti mode aplikasi atau mengklaim sudah masuk Plan Mode.
 
 Prioritaskan permintaan eksplisit, pedoman brand, dan referensi user. Untuk **replikasi**, ikuti layout, timing, framing, kamera, status UI, dan transisi yang terlihat pada referensi. Baca [REPLICATION-AND-QA.md](references/REPLICATION-AND-QA.md) untuk pengukuran dan laporan selisih. Untuk **adaptasi**, catat unsur yang dipertahankan dan yang diganti.
 
@@ -18,7 +20,7 @@ Prioritaskan permintaan eksplisit, pedoman brand, dan referensi user. Untuk **re
 Pilih **pasangan** gaya dan storyboard berdasarkan bentuk konten dan tindakan yang perlu terlihat. Storyboard memberi urutan dan pacing. Panduan gaya menentukan komposisi, material, tipografi, kamera, dan gerak yang mendukung adegan itu. Satu gaya dapat dipakai pada beberapa storyboard.
 
 ```bash
-node "<skill>/scripts/plan-motion.mjs" --brief "<isi dan tujuan>" --duration 12 --fps 30 --aspect 16:9 --out research
+node "<skill>/scripts/plan-motion.mjs" --brief-file resolved-brief.json --out research
 ```
 
 Gunakan `--style <1–44>` dan/atau `--template <T001–T103>` jika user menetapkan pilihan atau agen perlu mengoreksi kecocokan. Planner memakai petunjuk kata utuh dan rekomendasi kompatibilitas. Untuk brief “cara install Linux”, titik awalnya installer grafis (#12 + T023). Jika brief menyebut memasang paket lewat CLI, gunakan #26 + T036. Untuk gaya Apple interaktif #44, pakai template kode T101 untuk tutorial, T102 untuk intro brand, atau T103 untuk edukasi. Ikuti [panduan #44](references/styles/44-apple-inspired-product-cinema.md) untuk mengisi slot dan menyesuaikan koreografi ke referensi. Periksa hasil terhadap maksud user.
