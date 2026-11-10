@@ -3,11 +3,7 @@
 Skill untuk membuat motion graphics dan mengedit video dengan Remotion (React dan TypeScript). Mulai dari brief, pilih satu dari 44 panduan gaya dan satu dari 103 storyboard, lalu adaptasi isi shot. Template React mencakup UI, tipografi, kamera, grid, dan kartu. Gunakan aset sumber, cue audio sesuai aksi, dan pemeriksaan hasil render.
 
 <p align="center">
-  <a href="assets/preview/motion-demo.mp4">
-    <img src="assets/preview/motion-demo.gif" alt="Motion Craft Demo Preview (Autoplay)" width="100%" />
-  </a>
-  <br />
-  <sub>Video otomatis berputar (autoplay loop). Klik preview di atas atau buka <a href="assets/preview/motion-demo.mp4"><b>assets/preview/motion-demo.mp4</b></a> untuk versi Full HD 1080p dengan audio &amp; SFX.</sub>
+  <img src="assets/preview/motion-demo.gif" alt="Motion Craft Demo" width="100%" />
 </p>
 
 ## Status QA dan Timestamp
